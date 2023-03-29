@@ -8,9 +8,16 @@ public class CollisionDamage : MonoBehaviour
     public string collisionTag;
     
 
-    private void OnCollisionEnter2D(Collision2D coll) {
-        if(coll.gameObject.tag == collisionTag) {
-            Health health = coll.gameObject.GetComponent<Health>();
+    void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == collisionTag) {
+            Health health = other.gameObject.GetComponent<Health>();
+            health.TakeHit(collisionDamage);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == collisionTag) {
+            Health health = other.gameObject.GetComponent<Health>();
             health.TakeHit(collisionDamage);
         }
     }

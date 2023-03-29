@@ -13,7 +13,9 @@ public class Bullet : MonoBehaviour {
 
     private void Update() {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-    
+        if(player == null) {
+            DestroyBullet();
+        }
         if(transform.position.x == target.x && transform.position.y == target.y) {
             DestroyBullet();
         }
